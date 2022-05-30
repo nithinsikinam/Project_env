@@ -1,0 +1,17 @@
+<html>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+   {{rows|safe}}
+   <div class="row">
+      <div class="col">
+         <form action="/download"method="post"enctype="multipart/form-data">
+            <input type="hidden" name="filename" value="{{filename}}"><input type="hidden" name="address" value="{{address}}"><input class="btn btn-dark" type="submit"value="Download">
+         </form>
+      </div>
+      <div class="col">
+         <form action="/back"method="post"enctype="multipart/form-data">
+            <input type="hidden" name="address" value="{{address}}"><input class="btn btn-dark" type="submit"value="Back">
+         </form>
+      </div>
+   </div>
+</html>
+

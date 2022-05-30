@@ -1,0 +1,314 @@
+<html>
+   <head> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+        
+        function submitform() {
+    document.getElementById('loadingmsg').style.display = 'block';
+    document.getElementById('loadingover').style.display = 'block';
+    document.getElementById("myForm").submit();
+}
+    </script>
+    <style type="text/css">
+        #loadingmsg {
+        color: black;
+        background: #fff; 
+        padding: 10px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 100;
+        margin-right: -25%;
+        margin-bottom: -25%;
+        }
+        #loadingover {
+        background: black;
+        z-index: 99;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -khtml-opacity: 0.8;
+        opacity: 0.8;
+      }
+  </style>
+    <style>
+        /*
+    DEMO STYLE
+*/
+
+        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+        }
+
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            font-weight: 300;
+            line-height: 1.7em;
+            color: #999;
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .navbar {
+            padding: 15px 10px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-btn {
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dashed #ddd;
+            margin: 40px 0;
+
+
+        }
+        .loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  background-color: transparent;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+        /* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+
+        }
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #7386D5;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #6d7fcc;
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+            border-bottom: 1px solid #47748b;
+        }
+
+        #sidebar ul p {
+            color: #fff;
+            padding: 10px;
+        }
+
+        #sidebar ul li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        #sidebar ul li a:hover {
+            color: #7386D5;
+            background: #fff;
+        }
+
+        #sidebar ul li.active>a,
+        a[aria-expanded="true"] {
+            color: #fff;
+            background: #6d7fcc;
+        }
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+            background: #6d7fcc;
+        }
+
+        ul.CTAs {
+            padding: 20px;
+        }
+
+        ul.CTAs a {
+            text-align: center;
+            font-size: 0.9em !important;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        a.download {
+            background: #fff;
+            color: #7386D5;
+        }
+
+        a.article,
+        a.article:hover {
+            background: #6d7fcc !important;
+            color: #fff !important;
+        }
+
+        /* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+        #content {
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+
+        /* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+
+
+        p{
+    position: absolute;
+    bottom: 0;
+}
+        
+    </style>
+   
+</head>
+    <body>
+        <div id='loadingmsg' style='display: none;'><div class="loader"></div></div>
+<div id='loadingover' style='display: none;'></div>
+
+        
+
+   <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+
+
+       <ul class="list-unstyled components">
+
+          <li>
+             <a href="/">Home</a>
+          </li>
+          <li>
+             <a href="/folder">Folders</a>
+          </li>
+
+          <li>
+            <a href="#">Display</a> 
+          </li>
+          <li>
+             <a href="/api">API</a>
+          </li>
+       </ul>
+
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+    <form action="/display" method="post" enctype="multipart/form-data"><input type="submit" class="btn btn-dark" value="CSV"><input type="hidden" value="csv" name="type"></form>
+    <form action="/display" method="post" enctype="multipart/form-data"><input type="submit" class="btn btn-dark" value="XLSX"><input type="hidden" value="xlsx" name="type"></form>
+
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+        
+    
+    <table class="table table-bordered">
+        <thead>
+           <tr>
+              <th scope="col" style="width:70%">Name</th>
+              
+           </tr>
+        </thead>
+    <tbody>
+        {%for i in files%}
+        <tr>
+            <td>
+                {{i[1]}}
+            </td>
+            <td>
+                <form action="/fileDisplay" method="post" enctype="multipart/form-data"><input type="submit" class="btn btn-dark" value="display"><input type="hidden" value="{{i[1]}}" name="filename"><input type="hidden" value="{{i[0]}}" name="address"></form>
+            </td>
+            <td>
+                <button onclick="submitform()" class="btn btn-dark">Launch</button>
+                <form action="/launch" method="post" enctype="multipart/form-data" id="myForm"></form>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+    </table>
+</nav>
+
+           
+</div>
+    </body>
+</html>
