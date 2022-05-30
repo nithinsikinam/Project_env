@@ -4,6 +4,7 @@ from flask import Flask,render_template,request,send_file
 from werkzeug.utils import secure_filename
 import shutil  
 import time
+import Db
 app = Flask(__name__)
 #function used to verify a folder or file
 def index_in_list(a_list, index):
