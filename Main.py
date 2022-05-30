@@ -1,15 +1,15 @@
 import os
 import pandas as pd
-from flask import Flask,render_template,request,send_file
+from flask import Flask,render_template,request,send_file,redirect,url_for,session
 from werkzeug.utils import secure_filename
 import shutil  
 import time
-import Db
+import sqlite3
 app = Flask(__name__)
 #function used to verify a folder or file
 def index_in_list(a_list, index):
     return(index < len(a_list))
-
+app.secret_key="andreacravioto"
 #endpoint for creating new directory
 @app.route('/createdir',methods=['POST'])
 def createdir():
@@ -202,14 +202,29 @@ def api():
         return render_template("api.html",content=content.upper())
     return render_template('api.html',content="")
 
-@app.route("/")
+@app.route("/",methods=["POST","GET"])
 def landing():
-    return render_template("home.html")
+    if (request.method=="POST"):
+        with sqlite3.connect("./database/database.db") as con:
+            c=con.execute("select * from users where username = '"+request.form["username"]+"' and password ='"+request.form["password"]+"';")     
+            row=c.fetchone()
+            if(row):
+                session["desig"]=row[2]
+                print(row[2])
+                return redirect(url_for('home'))
+            else:
+                render_template("login.html")
+        
+    return render_template("login.html")
 
 @app.route("/launch" ,methods=["POST","GET"])
 def launch():
     time.sleep(10)
-    return "done"    
+    return "done"
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
     
 if __name__ == '__main__':
     app.run()  
