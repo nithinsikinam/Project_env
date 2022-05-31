@@ -8,6 +8,11 @@
             });
         });
         
+    function GetSelectedTextValue(filetypes) {
+        var selectedText = filetypes.options[filetypes.selectedIndex].innerHTML;
+        document.getElementById(selectedText).submit();
+        }
+
         function submitform() {
     document.getElementById('loadingmsg').style.display = 'block';
     document.getElementById('loadingover').style.display = 'block';
@@ -274,8 +279,26 @@
 
     <!-- Page Content  -->
     <div id="content">
-    <form action="/display" method="post" enctype="multipart/form-data"><input type="submit" class="btn btn-dark" value="CSV"><input type="hidden" value="csv" name="type"></form>
-    <form action="/display" method="post" enctype="multipart/form-data"><input type="submit" class="btn btn-dark" value="XLSX"><input type="hidden" value="xlsx" name="type"></form>
+        <div class="row">
+            <span>filetype</span>
+        <select id="filetype" onchange="GetSelectedTextValue(this)">
+            <option></option>
+            {%for x in filestypes%}
+            <option >{{x}}</option>
+            {%endfor%}
+        </select>
+        <span>filename</span>
+        <select id="filename" >
+            <option></option>
+            {%for x in files%}
+            <option >{{x[1]}}</option>
+            {%endfor%}
+        </select>
+    
+    </div>
+    {%for x in filestypes%}
+    <form action="/display" method="post" enctype="multipart/form-data" id="{{x}}"><input type="hidden" value="{{x}}" name="type"></form>
+    {%endfor%}
 
        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">

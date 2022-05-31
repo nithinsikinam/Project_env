@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 import shutil  
 import time
 import sqlite3
+import json
 app = Flask(__name__)
 #function used to verify a folder or file
 def index_in_list(a_list, index):
@@ -177,13 +178,18 @@ def parser(addr,arr):
 @app.route('/display',methods=['POST','GET'])  
 def display():
     arr=[]
+    f = open('./static/config.json')
+    data = json.load(f)
+    filestypes=data["filetypes"]
+    f.close()
     if request.method=="GET":
-        return render_template("display.html",files=[])
+
+        return render_template("display.html",files=[],filestypes=filestypes)
     else:
         
         parser("./Files",arr)
         
-        return render_template("display.html",files=arr)
+        return render_template("display.html",files=arr,filestypes=filestypes)
 
 @app.route("/fileDisplay",methods=["POST"])
 def fileDisplay():
